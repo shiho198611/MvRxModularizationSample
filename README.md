@@ -24,9 +24,9 @@ Module in this practice has four parts:
 - starwarpeople(Feature module)
 - starwarship(Feature module)
 
-The "app" module is implement all module and the main app architecture.
-The "base" module is implement all model side data and any basic class.
-The "starwarpeople" & "starwarship" module, this two module implement base module and just to practice coordinator and mvvm architecture.
+- The "app" module is implement all module and the main app architecture.
+- The "base" module is implement all model side data and any basic class.
+- The "starwarpeople" & "starwarship" module, this two module is feature module, implement base module and just to practice coordinator and mvvm architecture.
 
 ### Reference:
 https://medium.com/better-programming/setting-up-android-modules-with-koin-962534395a3e
