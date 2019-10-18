@@ -20,5 +20,5 @@ interface BaseCoordinator {
     fun back(data: Any? = null)
     fun keyBack(data: Any? = null)
 
-    fun present(): Observable<Any>
+    fun present(): Observable<CoordinatorEvent>
 }

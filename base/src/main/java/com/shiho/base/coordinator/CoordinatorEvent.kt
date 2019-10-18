@@ -11,13 +11,11 @@ import java.io.IOException
  * <date> <version> <desc>
  */
 
-class CoordinatorEvent{
+sealed class CoordinatorEvent{
 
-    data class CoordinatorCommit(val transferData: Any? = Any())
-    data class FragmentCommit(val fragment: Fragment, val transferData: Any? = Any())
-//    data class InteractionEnd(val transferData: Any? = Any())
-    data class AppFinish(val transferData: Any? = Any())
+    data class FragmentCommit(val fragment: Fragment, val transferData: Any? = Any()): CoordinatorEvent()
+    data class AppFinish(val transferData: Any? = Any()): CoordinatorEvent()
 
-    data class InteractionEnd(val data: Any? = null) : IOException()
+    data class InteractionEnd(val data: Any? = null): IOException()
 
 }

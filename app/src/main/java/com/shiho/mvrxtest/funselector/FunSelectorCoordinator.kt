@@ -14,8 +14,8 @@ import io.reactivex.ObservableEmitter
  */
 class FunSelectorCoordinator: BaseCoordinator {
 
-    val funSelObservable: Observable<Any>
-    lateinit var funSelEmitter: ObservableEmitter<Any>
+    val funSelObservable: Observable<CoordinatorEvent>
+    lateinit var funSelEmitter: ObservableEmitter<CoordinatorEvent>
 
     init {
         funSelObservable = Observable.create {
@@ -40,7 +40,7 @@ class FunSelectorCoordinator: BaseCoordinator {
         back(data)
     }
 
-    override fun present(): Observable<Any> {
+    override fun present(): Observable<CoordinatorEvent> {
         return funSelObservable
     }
 }

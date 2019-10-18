@@ -16,8 +16,8 @@ import io.reactivex.ObservableEmitter
 class StarWarsShipsCoordinator: BaseCoordinator {
 
     private var shipState = StarWarsShipsState.SHIPS
-    private val presentObservable: Observable<Any>
-    lateinit var presentEmitter: ObservableEmitter<Any>
+    private val presentObservable: Observable<CoordinatorEvent>
+    lateinit var presentEmitter: ObservableEmitter<CoordinatorEvent>
 
     init {
         presentObservable = Observable.create {
@@ -43,7 +43,7 @@ class StarWarsShipsCoordinator: BaseCoordinator {
         back(data)
     }
 
-    override fun present(): Observable<Any> {
+    override fun present(): Observable<CoordinatorEvent> {
         return presentObservable
     }
 
