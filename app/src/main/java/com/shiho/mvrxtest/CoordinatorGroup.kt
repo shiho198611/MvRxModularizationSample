@@ -33,7 +33,7 @@ class CoordinatorGroup: BaseCoordinator, KoinComponent {
         return fragmentCoordinator.back(data)
     }
 
-    override fun present(): Observable<Any> {
+    override fun present(): Observable<CoordinatorEvent> {
         return fragmentCoordinator.present().onErrorResumeNext(TransferFunction())
     }
 
@@ -48,9 +48,9 @@ class CoordinatorGroup: BaseCoordinator, KoinComponent {
         SHIPS
     }
 
-    inner class TransferFunction: Function<Throwable, Observable<Any>> {
+    inner class TransferFunction: Function<Throwable, Observable<CoordinatorEvent>> {
 
-        override fun apply(th: Throwable): Observable<Any> {
+        override fun apply(th: Throwable): Observable<CoordinatorEvent> {
             if(th is CoordinatorEvent.InteractionEnd &&
                 state == CoordinatorState.PEOPLE ||
                 state == CoordinatorState.SHIPS) {
@@ -76,4 +76,5 @@ class CoordinatorGroup: BaseCoordinator, KoinComponent {
         }
 
     }
+
 }

@@ -18,8 +18,8 @@ class StarWarsPeopleCoordinator: BaseCoordinator {
 
     private var fragmentIndex: FragmentIndex = FragmentIndex.STARWARS_ALL_PEOPLE
 
-    private val fragmentObservable: Observable<Any>
-    private lateinit var indexEmitter: ObservableEmitter<Any>
+    private val fragmentObservable: Observable<CoordinatorEvent>
+    private lateinit var indexEmitter: ObservableEmitter<CoordinatorEvent>
 
     enum class FragmentIndex {
         STARWARS_ALL_PEOPLE,
@@ -60,7 +60,7 @@ class StarWarsPeopleCoordinator: BaseCoordinator {
         back(data)
     }
 
-    override fun present(): Observable<Any> {
+    override fun present(): Observable<CoordinatorEvent> {
         return fragmentObservable
     }
 
