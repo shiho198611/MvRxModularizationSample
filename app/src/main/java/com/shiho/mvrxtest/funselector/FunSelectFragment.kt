@@ -32,6 +32,9 @@ class FunSelectFragment(val coordinator: BaseCoordinator): Fragment(), View.OnCl
     }
 
     override fun onClick(v: View?) {
-        coordinator.next(v?.id)
+        when(v?.id){
+            R.id.btn_goto_people -> coordinator.next(FunSelectEvent.NAVITOPEOPLE)
+            R.id.btn_goto_ships -> coordinator.next(FunSelectEvent.NAVITOSHIPS)
+        }
     }
 }
