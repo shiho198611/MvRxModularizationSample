@@ -2,8 +2,6 @@ package com.shiho.mvrxtest
 
 import android.app.Application
 import com.shiho.base.networkServiceModule
-import com.shiho.starwarpeople.starWarsPeopleModule
-import com.shiho.starwarships.starWarsShipsModule
 
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -22,8 +20,6 @@ class MvRxTestApplication: Application() {
         startKoin {
             androidContext(this@MvRxTestApplication)
             modules(networkServiceModule)
-            modules(starWarsPeopleModule)
-            modules(starWarsShipsModule)
         }
     }
 }
