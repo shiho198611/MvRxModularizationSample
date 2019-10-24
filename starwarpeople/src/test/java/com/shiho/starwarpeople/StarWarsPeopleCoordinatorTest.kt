@@ -42,18 +42,12 @@ class StarWarsPeopleCoordinatorTest {
 
         starWarsPeopleCoordinator.next()
 
-        testObserver.assertOf {
-            Assert.assertEquals(it.valueCount(), 2)
-            it.values().forEachIndexed { index, event ->
-                Assert.assertTrue(event is CoordinatorEvent.FragmentCommit)
-                if(index == 0) {
-                    Assert.assertTrue((event as CoordinatorEvent.FragmentCommit).fragment is StarWarsPeopleFragment)
-                }
-                else if(index == 1) {
-                    Assert.assertTrue((event as CoordinatorEvent.FragmentCommit).fragment is StarWarsPeopleDetailFragment)
-                }
-            }
+        testObserver.assertValueAt(0) { event ->
+            (event as CoordinatorEvent.FragmentCommit).fragment is StarWarsPeopleFragment
+        }.assertValueAt(1) { event ->
+            (event as CoordinatorEvent.FragmentCommit).fragment is StarWarsPeopleDetailFragment
         }
+
     }
 
     @Test
@@ -83,14 +77,12 @@ class StarWarsPeopleCoordinatorTest {
         starWarsPeopleCoordinator.next()
         starWarsPeopleCoordinator.back()
 
-        testObserver.assertOf {
-            Assert.assertEquals(it.valueCount(), 3)
-            it.values().forEachIndexed { index, event ->
-                Assert.assertTrue(event is CoordinatorEvent.FragmentCommit)
-                if(index == 2) {
-                   Assert.assertTrue((event as CoordinatorEvent.FragmentCommit).fragment is StarWarsPeopleFragment)
-                }
-            }
+        testObserver.assertValueAt(0) {
+            it is CoordinatorEvent.FragmentCommit && it.fragment is StarWarsPeopleFragment
+        }.assertValueAt(1) {
+            it is CoordinatorEvent.FragmentCommit && it.fragment is StarWarsPeopleDetailFragment
+        }.assertValueAt(2) {
+            it is CoordinatorEvent.FragmentCommit && it.fragment is StarWarsPeopleFragment
         }
     }
 
@@ -109,14 +101,13 @@ class StarWarsPeopleCoordinatorTest {
         starWarsPeopleCoordinator.next()
         starWarsPeopleCoordinator.back()
 
-        testObserver.assertOf {
-            Assert.assertEquals(it.valueCount(), 3)
-            it.values().forEachIndexed { index, event ->
-                Assert.assertTrue(event is CoordinatorEvent.FragmentCommit)
-                if(index == 2) {
-                    Assert.assertTrue((event as CoordinatorEvent.FragmentCommit).fragment is StarWarsPeopleFragment)
-                }
-            }
+        testObserver.assertValueAt(0) {
+            it is CoordinatorEvent.FragmentCommit && it.fragment is StarWarsPeopleFragment
+        }.assertValueAt(1) {
+            it is CoordinatorEvent.FragmentCommit && it.fragment is StarWarsPeopleDetailFragment
+        }.assertValueAt(2) {
+            it is CoordinatorEvent.FragmentCommit && it.fragment is StarWarsPeopleFragment
         }
+
     }
 }
