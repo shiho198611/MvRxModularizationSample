@@ -2,6 +2,7 @@ package com.shiho.mvrxtest
 
 import com.shiho.base.coordinator.BaseCoordinator
 import com.shiho.base.coordinator.CoordinatorEvent
+import com.shiho.mvrxtest.funselector.FunSelectEvent
 import com.shiho.mvrxtest.funselector.FunSelectorCoordinator
 import com.shiho.starwarpeople.StarWarsPeopleCoordinator
 import com.shiho.starwarships.StarWarsShipsCoordinator
@@ -60,12 +61,12 @@ class CoordinatorGroup: BaseCoordinator, KoinComponent {
                 return fragmentCoordinator.present().onErrorResumeNext(TransferFunction())
             }
             else if(th is CoordinatorEvent.InteractionEnd && state == CoordinatorState.INIT) {
-                if(th.data != null && th.data is Int) {
-                    if(th.data == R.id.btn_goto_people) {
+                if(th.data != null && th.data is FunSelectEvent) {
+                    if(th.data == FunSelectEvent.NAVITOPEOPLE) {
                         state = CoordinatorState.PEOPLE
                         fragmentCoordinator = StarWarsPeopleCoordinator()
                     }
-                    else if(th.data == R.id.btn_goto_ships) {
+                    else if(th.data == FunSelectEvent.NAVITOSHIPS) {
                         state = CoordinatorState.SHIPS
                         fragmentCoordinator = StarWarsShipsCoordinator()
                     }
